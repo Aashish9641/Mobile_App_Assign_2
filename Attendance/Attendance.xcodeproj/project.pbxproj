@@ -16,6 +16,16 @@
 		C58BD26E2D9A35140054940A /* AttendanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD26D2D9A35140054940A /* AttendanceTests.swift */; };
 		C58BD2782D9A35140054940A /* AttendanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2772D9A35140054940A /* AttendanceUITests.swift */; };
 		C58BD27A2D9A35140054940A /* AttendanceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2792D9A35140054940A /* AttendanceUITestsLaunchTests.swift */; };
+		C58BD28E2D9A3F560054940A /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD28D2D9A3F560054940A /* Core.swift */; };
+		C58BD2902D9A3F800054940A /* AdminLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD28F2D9A3F800054940A /* AdminLoginScreen.swift */; };
+		C58BD2922D9A3FA10054940A /* AdminDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2912D9A3FA10054940A /* AdminDashboard.swift */; };
+		C58BD2942D9A3FAF0054940A /* StudentLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2932D9A3FAF0054940A /* StudentLoginScreen.swift */; };
+		C58BD2962D9A3FC50054940A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2952D9A3FC50054940A /* HomeScreen.swift */; };
+		C58BD2982D9A3FD50054940A /* AttendanceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2972D9A3FD50054940A /* AttendanceScreen.swift */; };
+		C58BD29A2D9A3FE50054940A /* PostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2992D9A3FE50054940A /* PostScreen.swift */; };
+		C58BD29C2D9A3FF40054940A /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD29B2D9A3FF40054940A /* ProfileScreen.swift */; };
+		C58BD29E2D9A423F0054940A /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD29D2D9A423F0054940A /* AuthSelectionView.swift */; };
+		C58BD2A02D9A42E70054940A /* SocialFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD29F2D9A42E70054940A /* SocialFeedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +58,16 @@
 		C58BD2732D9A35140054940A /* AttendanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttendanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58BD2772D9A35140054940A /* AttendanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceUITests.swift; sourceTree = "<group>"; };
 		C58BD2792D9A35140054940A /* AttendanceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C58BD28D2D9A3F560054940A /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		C58BD28F2D9A3F800054940A /* AdminLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginScreen.swift; sourceTree = "<group>"; };
+		C58BD2912D9A3FA10054940A /* AdminDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboard.swift; sourceTree = "<group>"; };
+		C58BD2932D9A3FAF0054940A /* StudentLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLoginScreen.swift; sourceTree = "<group>"; };
+		C58BD2952D9A3FC50054940A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		C58BD2972D9A3FD50054940A /* AttendanceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceScreen.swift; sourceTree = "<group>"; };
+		C58BD2992D9A3FE50054940A /* PostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScreen.swift; sourceTree = "<group>"; };
+		C58BD29B2D9A3FF40054940A /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		C58BD29D2D9A423F0054940A /* AuthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSelectionView.swift; sourceTree = "<group>"; };
+		C58BD29F2D9A42E70054940A /* SocialFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +158,7 @@
 			children = (
 				C58BD2622D9A35130054940A /* Attendance.xcdatamodeld */,
 				C58BD2602D9A35130054940A /* Persistence.swift */,
+				C58BD28D2D9A3F560054940A /* Core.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -154,6 +175,10 @@
 		C58BD2882D9A38AA0054940A /* Admin panel */ = {
 			isa = PBXGroup;
 			children = (
+				C58BD28F2D9A3F800054940A /* AdminLoginScreen.swift */,
+				C58BD2912D9A3FA10054940A /* AdminDashboard.swift */,
+				C58BD2932D9A3FAF0054940A /* StudentLoginScreen.swift */,
+				C58BD29D2D9A423F0054940A /* AuthSelectionView.swift */,
 			);
 			path = "Admin panel";
 			sourceTree = "<group>";
@@ -161,6 +186,11 @@
 		C58BD2892D9A38B20054940A /* Student panel */ = {
 			isa = PBXGroup;
 			children = (
+				C58BD2952D9A3FC50054940A /* HomeScreen.swift */,
+				C58BD2972D9A3FD50054940A /* AttendanceScreen.swift */,
+				C58BD2992D9A3FE50054940A /* PostScreen.swift */,
+				C58BD29B2D9A3FF40054940A /* ProfileScreen.swift */,
+				C58BD29F2D9A42E70054940A /* SocialFeedView.swift */,
 			);
 			path = "Student panel";
 			sourceTree = "<group>";
@@ -296,9 +326,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C58BD2612D9A35130054940A /* Persistence.swift in Sources */,
+				C58BD29E2D9A423F0054940A /* AuthSelectionView.swift in Sources */,
 				C58BD25A2D9A35110054940A /* ContentView.swift in Sources */,
+				C58BD2A02D9A42E70054940A /* SocialFeedView.swift in Sources */,
 				C58BD2642D9A35130054940A /* Attendance.xcdatamodeld in Sources */,
+				C58BD2942D9A3FAF0054940A /* StudentLoginScreen.swift in Sources */,
+				C58BD28E2D9A3F560054940A /* Core.swift in Sources */,
+				C58BD2962D9A3FC50054940A /* HomeScreen.swift in Sources */,
 				C58BD2582D9A35110054940A /* AttendanceApp.swift in Sources */,
+				C58BD29C2D9A3FF40054940A /* ProfileScreen.swift in Sources */,
+				C58BD29A2D9A3FE50054940A /* PostScreen.swift in Sources */,
+				C58BD2922D9A3FA10054940A /* AdminDashboard.swift in Sources */,
+				C58BD2982D9A3FD50054940A /* AttendanceScreen.swift in Sources */,
+				C58BD2902D9A3F800054940A /* AdminLoginScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
