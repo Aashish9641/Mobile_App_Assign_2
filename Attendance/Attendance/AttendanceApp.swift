@@ -1,20 +1,15 @@
-//
-//  AttendanceApp.swift
-//  Attendance
-//
-//  Created by NAAMI COLLEGE on 31/03/2025.
-//
-
+// MARK: - AttendanceApp.swift
 import SwiftUI
 
 @main
 struct AttendanceApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @StateObject var authVM = AuthViewModel() // Create the view model
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(authVM) // Inject the view model
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
         }
     }
 }

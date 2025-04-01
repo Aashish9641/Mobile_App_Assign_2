@@ -16,16 +16,24 @@
 		C58BD26E2D9A35140054940A /* AttendanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD26D2D9A35140054940A /* AttendanceTests.swift */; };
 		C58BD2782D9A35140054940A /* AttendanceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2772D9A35140054940A /* AttendanceUITests.swift */; };
 		C58BD27A2D9A35140054940A /* AttendanceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2792D9A35140054940A /* AttendanceUITestsLaunchTests.swift */; };
-		C58BD28E2D9A3F560054940A /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD28D2D9A3F560054940A /* Core.swift */; };
-		C58BD2902D9A3F800054940A /* AdminLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD28F2D9A3F800054940A /* AdminLoginScreen.swift */; };
-		C58BD2922D9A3FA10054940A /* AdminDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2912D9A3FA10054940A /* AdminDashboard.swift */; };
-		C58BD2942D9A3FAF0054940A /* StudentLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2932D9A3FAF0054940A /* StudentLoginScreen.swift */; };
-		C58BD2962D9A3FC50054940A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2952D9A3FC50054940A /* HomeScreen.swift */; };
-		C58BD2982D9A3FD50054940A /* AttendanceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2972D9A3FD50054940A /* AttendanceScreen.swift */; };
-		C58BD29A2D9A3FE50054940A /* PostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2992D9A3FE50054940A /* PostScreen.swift */; };
-		C58BD29C2D9A3FF40054940A /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD29B2D9A3FF40054940A /* ProfileScreen.swift */; };
-		C58BD29E2D9A423F0054940A /* AuthSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD29D2D9A423F0054940A /* AuthSelectionView.swift */; };
-		C58BD2A02D9A42E70054940A /* SocialFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD29F2D9A42E70054940A /* SocialFeedView.swift */; };
+		C58D818B2D9B92F80059F30F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D818A2D9B92F80059F30F /* AuthViewModel.swift */; };
+		C58D818D2D9B93090059F30F /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D818C2D9B93090059F30F /* StudentViewModel.swift */; };
+		C58D818F2D9B93170059F30F /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D818E2D9B93170059F30F /* PostViewModel.swift */; };
+		C58D81922D9B93370059F30F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81912D9B93370059F30F /* LoginView.swift */; };
+		C58D81942D9B934A0059F30F /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81932D9B934A0059F30F /* AdminDashboardView.swift */; };
+		C58D81962D9B93580059F30F /* StudentProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81952D9B93580059F30F /* StudentProfileView.swift */; };
+		C58D81982D9B93660059F30F /* AttendanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81972D9B93660059F30F /* AttendanceView.swift */; };
+		C58D819A2D9B93740059F30F /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81992D9B93740059F30F /* TimelineView.swift */; };
+		C58D819D2D9B93980059F30F /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D819C2D9B93980059F30F /* Student+CoreDataClass.swift */; };
+		C58D819F2D9B93AF0059F30F /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D819E2D9B93AF0059F30F /* Post+CoreDataClass.swift */; };
+		C58D81A12D9B93C20059F30F /* Comment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A02D9B93C20059F30F /* Comment+CoreDataClass.swift */; };
+		C58D81A32D9B96DB0059F30F /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A22D9B96DB0059F30F /* Course+CoreDataClass.swift */; };
+		C58D81A52D9B96F70059F30F /* Attendance+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A42D9B96F70059F30F /* Attendance+CoreDataClass.swift */; };
+		C58D81A72D9BA41D0059F30F /* AddStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A62D9BA41D0059F30F /* AddStudentView.swift */; };
+		C58D81A92D9BA4380059F30F /* EditStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A82D9BA4380059F30F /* EditStudentView.swift */; };
+		C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */; };
+		C58D81AD2D9BA5620059F30F /* CourseEnrollmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */; };
+		C58D81AF2D9BA5D40059F30F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,16 +66,24 @@
 		C58BD2732D9A35140054940A /* AttendanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttendanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58BD2772D9A35140054940A /* AttendanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceUITests.swift; sourceTree = "<group>"; };
 		C58BD2792D9A35140054940A /* AttendanceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C58BD28D2D9A3F560054940A /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
-		C58BD28F2D9A3F800054940A /* AdminLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminLoginScreen.swift; sourceTree = "<group>"; };
-		C58BD2912D9A3FA10054940A /* AdminDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboard.swift; sourceTree = "<group>"; };
-		C58BD2932D9A3FAF0054940A /* StudentLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLoginScreen.swift; sourceTree = "<group>"; };
-		C58BD2952D9A3FC50054940A /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		C58BD2972D9A3FD50054940A /* AttendanceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceScreen.swift; sourceTree = "<group>"; };
-		C58BD2992D9A3FE50054940A /* PostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScreen.swift; sourceTree = "<group>"; };
-		C58BD29B2D9A3FF40054940A /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
-		C58BD29D2D9A423F0054940A /* AuthSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSelectionView.swift; sourceTree = "<group>"; };
-		C58BD29F2D9A42E70054940A /* SocialFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeedView.swift; sourceTree = "<group>"; };
+		C58D818A2D9B92F80059F30F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		C58D818C2D9B93090059F30F /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewModel.swift; sourceTree = "<group>"; };
+		C58D818E2D9B93170059F30F /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		C58D81912D9B93370059F30F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C58D81932D9B934A0059F30F /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
+		C58D81952D9B93580059F30F /* StudentProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileView.swift; sourceTree = "<group>"; };
+		C58D81972D9B93660059F30F /* AttendanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceView.swift; sourceTree = "<group>"; };
+		C58D81992D9B93740059F30F /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		C58D819C2D9B93980059F30F /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C58D819E2D9B93AF0059F30F /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C58D81A02D9B93C20059F30F /* Comment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C58D81A22D9B96DB0059F30F /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C58D81A42D9B96F70059F30F /* Attendance+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attendance+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C58D81A62D9BA41D0059F30F /* AddStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentView.swift; sourceTree = "<group>"; };
+		C58D81A82D9BA4380059F30F /* EditStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentView.swift; sourceTree = "<group>"; };
+		C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseManagementView.swift; sourceTree = "<group>"; };
+		C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEnrollmentView.swift; sourceTree = "<group>"; };
+		C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +114,8 @@
 		C58BD24B2D9A35110054940A = {
 			isa = PBXGroup;
 			children = (
+				C58D819B2D9B93840059F30F /* Models */,
+				C58D81902D9B931D0059F30F /* Views */,
 				C58BD2872D9A38A10054940A /* Model View */,
 				C58BD2862D9A388D0054940A /* Core Data */,
 				C58BD2562D9A35110054940A /* Attendance */,
@@ -158,7 +176,6 @@
 			children = (
 				C58BD2622D9A35130054940A /* Attendance.xcdatamodeld */,
 				C58BD2602D9A35130054940A /* Persistence.swift */,
-				C58BD28D2D9A3F560054940A /* Core.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -166,33 +183,40 @@
 		C58BD2872D9A38A10054940A /* Model View */ = {
 			isa = PBXGroup;
 			children = (
-				C58BD2892D9A38B20054940A /* Student panel */,
-				C58BD2882D9A38AA0054940A /* Admin panel */,
+				C58D818A2D9B92F80059F30F /* AuthViewModel.swift */,
+				C58D818C2D9B93090059F30F /* StudentViewModel.swift */,
+				C58D818E2D9B93170059F30F /* PostViewModel.swift */,
 			);
 			path = "Model View";
 			sourceTree = "<group>";
 		};
-		C58BD2882D9A38AA0054940A /* Admin panel */ = {
+		C58D81902D9B931D0059F30F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C58BD28F2D9A3F800054940A /* AdminLoginScreen.swift */,
-				C58BD2912D9A3FA10054940A /* AdminDashboard.swift */,
-				C58BD2932D9A3FAF0054940A /* StudentLoginScreen.swift */,
-				C58BD29D2D9A423F0054940A /* AuthSelectionView.swift */,
+				C58D81912D9B93370059F30F /* LoginView.swift */,
+				C58D81932D9B934A0059F30F /* AdminDashboardView.swift */,
+				C58D81952D9B93580059F30F /* StudentProfileView.swift */,
+				C58D81972D9B93660059F30F /* AttendanceView.swift */,
+				C58D81992D9B93740059F30F /* TimelineView.swift */,
+				C58D81A62D9BA41D0059F30F /* AddStudentView.swift */,
+				C58D81A82D9BA4380059F30F /* EditStudentView.swift */,
+				C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */,
+				C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */,
+				C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */,
 			);
-			path = "Admin panel";
+			path = Views;
 			sourceTree = "<group>";
 		};
-		C58BD2892D9A38B20054940A /* Student panel */ = {
+		C58D819B2D9B93840059F30F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C58BD2952D9A3FC50054940A /* HomeScreen.swift */,
-				C58BD2972D9A3FD50054940A /* AttendanceScreen.swift */,
-				C58BD2992D9A3FE50054940A /* PostScreen.swift */,
-				C58BD29B2D9A3FF40054940A /* ProfileScreen.swift */,
-				C58BD29F2D9A42E70054940A /* SocialFeedView.swift */,
+				C58D819C2D9B93980059F30F /* Student+CoreDataClass.swift */,
+				C58D819E2D9B93AF0059F30F /* Post+CoreDataClass.swift */,
+				C58D81A02D9B93C20059F30F /* Comment+CoreDataClass.swift */,
+				C58D81A22D9B96DB0059F30F /* Course+CoreDataClass.swift */,
+				C58D81A42D9B96F70059F30F /* Attendance+CoreDataClass.swift */,
 			);
-			path = "Student panel";
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,20 +349,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58D818F2D9B93170059F30F /* PostViewModel.swift in Sources */,
+				C58D81982D9B93660059F30F /* AttendanceView.swift in Sources */,
+				C58D81A52D9B96F70059F30F /* Attendance+CoreDataClass.swift in Sources */,
 				C58BD2612D9A35130054940A /* Persistence.swift in Sources */,
-				C58BD29E2D9A423F0054940A /* AuthSelectionView.swift in Sources */,
+				C58D819D2D9B93980059F30F /* Student+CoreDataClass.swift in Sources */,
 				C58BD25A2D9A35110054940A /* ContentView.swift in Sources */,
-				C58BD2A02D9A42E70054940A /* SocialFeedView.swift in Sources */,
+				C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */,
+				C58D81942D9B934A0059F30F /* AdminDashboardView.swift in Sources */,
+				C58D81922D9B93370059F30F /* LoginView.swift in Sources */,
+				C58D81A92D9BA4380059F30F /* EditStudentView.swift in Sources */,
+				C58D819F2D9B93AF0059F30F /* Post+CoreDataClass.swift in Sources */,
+				C58D81AF2D9BA5D40059F30F /* ButtonStyles.swift in Sources */,
+				C58D818B2D9B92F80059F30F /* AuthViewModel.swift in Sources */,
 				C58BD2642D9A35130054940A /* Attendance.xcdatamodeld in Sources */,
-				C58BD2942D9A3FAF0054940A /* StudentLoginScreen.swift in Sources */,
-				C58BD28E2D9A3F560054940A /* Core.swift in Sources */,
-				C58BD2962D9A3FC50054940A /* HomeScreen.swift in Sources */,
+				C58D818D2D9B93090059F30F /* StudentViewModel.swift in Sources */,
+				C58D81A32D9B96DB0059F30F /* Course+CoreDataClass.swift in Sources */,
 				C58BD2582D9A35110054940A /* AttendanceApp.swift in Sources */,
-				C58BD29C2D9A3FF40054940A /* ProfileScreen.swift in Sources */,
-				C58BD29A2D9A3FE50054940A /* PostScreen.swift in Sources */,
-				C58BD2922D9A3FA10054940A /* AdminDashboard.swift in Sources */,
-				C58BD2982D9A3FD50054940A /* AttendanceScreen.swift in Sources */,
-				C58BD2902D9A3F800054940A /* AdminLoginScreen.swift in Sources */,
+				C58D81A12D9B93C20059F30F /* Comment+CoreDataClass.swift in Sources */,
+				C58D81962D9B93580059F30F /* StudentProfileView.swift in Sources */,
+				C58D81A72D9BA41D0059F30F /* AddStudentView.swift in Sources */,
+				C58D819A2D9B93740059F30F /* TimelineView.swift in Sources */,
+				C58D81AD2D9BA5620059F30F /* CourseEnrollmentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

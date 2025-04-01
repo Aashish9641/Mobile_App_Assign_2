@@ -1,3 +1,4 @@
+// MARK: - Persistence.swift
 import CoreData
 
 struct PersistenceController {
@@ -5,41 +6,24 @@ struct PersistenceController {
     
     let container: NSPersistentContainer
     
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "StudentsApp")
-        
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
-        
-        container.loadPersistentStores { _, error in
+    init() {
+        container = NSPersistentContainer(name: "Attendance") // Must match your .xcdatamodeld filename
+        container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
-        
-        // Create default admin if needed
-        createDefaultAdmin()
     }
     
-    private func createDefaultAdmin() {
+    func save() {
         let context = container.viewContext
-        let request: NSFetchRequest<Student> = Student.fetchRequest()
-        request.predicate = NSPredicate(format: "isAdmin == true")
-        
-        do {
-            let count = try context.count(for: request)
-            if count == 0 {
-                let admin = Student(context: context)
-                admin.id = UUID()
-                admin.name = "Admin"
-                admin.email = "admin@grace.edu"
-                admin.password = "admin123"
-                admin.isAdmin = true
+        if context.hasChanges {
+            do {
                 try context.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
-        } catch {
-            print("Error creating admin: \(error)")
         }
     }
 }
