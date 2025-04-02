@@ -1,4 +1,3 @@
-// MARK: - Persistence.swift
 import CoreData
 
 struct PersistenceController {
@@ -6,8 +5,11 @@ struct PersistenceController {
     
     let container: NSPersistentContainer
     
-    init() {
-        container = NSPersistentContainer(name: "Attendance") // Must match your .xcdatamodeld filename
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "Attendance")
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

@@ -1,4 +1,3 @@
-// MARK: - ContentView.swift
 import SwiftUI
 
 struct ContentView: View {
@@ -6,56 +5,61 @@ struct ContentView: View {
     @State private var showAdminLogin = false
     @State private var showStudentLogin = false
     
-    // University color scheme
-    let universityColors = [Color(red: 0.1, green: 0.3, blue: 0.7), Color(red: 0.2, green: 0.5, blue: 0.9)]
-    
     var body: some View {
         NavigationView {
             ZStack {
-                // University-themed gradient background
+                // University-themed background
                 LinearGradient(
-                    gradient: Gradient(colors: universityColors),
+                    gradient: Gradient(colors: [Color(red: 0.1, green: 0.3, blue: 0.7), Color(red: 0.2, green: 0.5, blue: 0.9)]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
                 .edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 30) {
-                    // University header
-                    VStack {
+                    // University header with logo
+                    VStack(spacing: 10) {
                         Image(systemName: "building.columns.fill")
                             .font(.system(size: 60))
                             .foregroundColor(.white)
+                        
                         Text("GraceTech University")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
+                            .font(.system(size: 28, weight: .bold))
                             .foregroundColor(.white)
+                        
+                        Text("Attendance & Social System")
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.8))
                     }
                     .padding(.top, 50)
                     
                     Spacer()
                     
-                    // Role selection buttons
-                    VStack(spacing: 25) {
-                        // Admin Button
-                        RoleButton(
+                    // Role selection cards
+                    VStack(spacing: 20) {
+                        RoleCard(
                             icon: "key.fill",
                             title: "Administrator",
                             color: .purple,
                             action: { showAdminLogin = true }
                         )
                         
-                        // Student Button
-                        RoleButton(
+                        RoleCard(
                             icon: "graduationcap.fill",
                             title: "Student",
                             color: .green,
                             action: { showStudentLogin = true }
                         )
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 30)
                     
                     Spacer()
+                    
+                    // Footer
+                    Text("Version 1.0")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.6))
+                        .padding(.bottom, 20)
                 }
             }
             .navigationBarHidden(true)
@@ -67,12 +71,20 @@ struct ContentView: View {
                 LoginView(isAdmin: false)
                     .environmentObject(authVM)
             }
+            .fullScreenCover(isPresented: $authVM.isAuthenticated) {
+                if authVM.isAdmin {
+                    AdminDashboardView()
+                        .environmentObject(authVM)
+                } else {
+                    StudentDashboardView()
+                        .environmentObject(authVM)
+                }
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
-struct RoleButton: View {
+struct RoleCard: View {
     let icon: String
     let title: String
     let color: Color
@@ -89,9 +101,9 @@ struct RoleButton: View {
                     .clipShape(Circle())
                 
                 Text(title)
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(.white)
+                    .padding(.leading, 10)
                 
                 Spacer()
                 
@@ -99,13 +111,12 @@ struct RoleButton: View {
                     .foregroundColor(.white)
             }
             .padding()
-            .background(Color.white.opacity(0.2))
+            .background(Color.white.opacity(0.15))
             .cornerRadius(15)
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                    .stroke(Color.white.opacity(0.3), lineWidth: 1)
             )
         }
-        .buttonStyle(ScaleButtonStyle())
     }
 }

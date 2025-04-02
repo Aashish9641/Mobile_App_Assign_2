@@ -1,8 +1,7 @@
-// MARK: - AddStudentView.swift
 import SwiftUI
 import CoreData
 
-struct AddStudentView: View {
+struct AddEditStudentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     
@@ -11,6 +10,8 @@ struct AddStudentView: View {
     @State private var password = ""
     @State private var showingAlert = false
     @State private var alertMessage = ""
+    
+    var student: Student?
     
     var body: some View {
         NavigationView {
@@ -24,34 +25,40 @@ struct AddStudentView: View {
                 }
                 
                 Section {
-                    Button("Save Student") {
+                    Button(student == nil ? "Add Student" : "Save Changes") {
                         saveStudent()
                     }
                     .disabled(name.isEmpty || email.isEmpty || password.isEmpty)
                 }
             }
-            .navigationTitle("New Student")
-            .navigationBarItems(
-                leading: Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                },
-                trailing: Button("Save") {
-                    saveStudent()
+            .navigationTitle(student == nil ? "New Student" : "Edit Student")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
-                .disabled(name.isEmpty || email.isEmpty || password.isEmpty)
-            )
+            }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
+            .onAppear {
+                if let student = student {
+                    name = student.name ?? ""
+                    email = student.email ?? ""
+                    password = student.password ?? ""
+                }
             }
         }
     }
     
     private func saveStudent() {
-        let newStudent = Student(context: viewContext)
-        newStudent.id = UUID()
-        newStudent.name = name
-        newStudent.email = email
-        newStudent.password = AuthViewModel().hashPassword(password)
+        let studentToSave = student ?? Student(context: viewContext)
+        studentToSave.id = UUID()
+        studentToSave.name = name
+        studentToSave.email = email
+        studentToSave.password = password
         
         do {
             try viewContext.save()

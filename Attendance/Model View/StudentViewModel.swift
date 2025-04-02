@@ -1,4 +1,3 @@
-// MARK: - 📂 ViewModels/StudentViewModel.swift
 import SwiftUI
 import CoreData
 
@@ -7,7 +6,7 @@ class StudentViewModel: ObservableObject {
     
     func updateStudent(student: Student, newName: String, newPassword: String) {
         student.name = newName
-        student.password = AuthViewModel().hashPassword(newPassword)
+        student.password = newPassword // Removed hashPassword for simplicity
         PersistenceController.shared.save()
     }
     

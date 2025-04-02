@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C58A2ADF2D9CEBDB004F519F /* StudentDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2ADE2D9CEBDB004F519F /* StudentDashboardView.swift */; };
+		C58A2AE12D9CEC18004F519F /* StudentManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */; };
+		C58A2AE32D9CF0B8004F519F /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE22D9CF0B8004F519F /* ReportsView.swift */; };
+		C58A2AE52D9CF266004F519F /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE42D9CF266004F519F /* CoreDataExtensions.swift */; };
+		C58A2AE72D9CF4D7004F519F /* AddEditStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */; };
+		C58A2AE92D9D1046004F519F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE82D9D1046004F519F /* SearchBar.swift */; };
 		C58BD2582D9A35110054940A /* AttendanceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2572D9A35110054940A /* AttendanceApp.swift */; };
 		C58BD25A2D9A35110054940A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BD2592D9A35110054940A /* ContentView.swift */; };
 		C58BD25C2D9A35130054940A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C58BD25B2D9A35130054940A /* Assets.xcassets */; };
@@ -29,8 +35,6 @@
 		C58D81A12D9B93C20059F30F /* Comment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A02D9B93C20059F30F /* Comment+CoreDataClass.swift */; };
 		C58D81A32D9B96DB0059F30F /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A22D9B96DB0059F30F /* Course+CoreDataClass.swift */; };
 		C58D81A52D9B96F70059F30F /* Attendance+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A42D9B96F70059F30F /* Attendance+CoreDataClass.swift */; };
-		C58D81A72D9BA41D0059F30F /* AddStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A62D9BA41D0059F30F /* AddStudentView.swift */; };
-		C58D81A92D9BA4380059F30F /* EditStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81A82D9BA4380059F30F /* EditStudentView.swift */; };
 		C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */; };
 		C58D81AD2D9BA5620059F30F /* CourseEnrollmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */; };
 		C58D81AF2D9BA5D40059F30F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */; };
@@ -54,6 +58,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C58A2ADE2D9CEBDB004F519F /* StudentDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDashboardView.swift; sourceTree = "<group>"; };
+		C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentManagementView.swift; sourceTree = "<group>"; };
+		C58A2AE22D9CF0B8004F519F /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		C58A2AE42D9CF266004F519F /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
+		C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditStudentView.swift; sourceTree = "<group>"; };
+		C58A2AE82D9D1046004F519F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C58BD2542D9A35110054940A /* Attendance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attendance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58BD2572D9A35110054940A /* AttendanceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceApp.swift; sourceTree = "<group>"; };
 		C58BD2592D9A35110054940A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,8 +89,6 @@
 		C58D81A02D9B93C20059F30F /* Comment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C58D81A22D9B96DB0059F30F /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C58D81A42D9B96F70059F30F /* Attendance+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attendance+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C58D81A62D9BA41D0059F30F /* AddStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentView.swift; sourceTree = "<group>"; };
-		C58D81A82D9BA4380059F30F /* EditStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudentView.swift; sourceTree = "<group>"; };
 		C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseManagementView.swift; sourceTree = "<group>"; };
 		C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEnrollmentView.swift; sourceTree = "<group>"; };
 		C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			children = (
 				C58BD2622D9A35130054940A /* Attendance.xcdatamodeld */,
 				C58BD2602D9A35130054940A /* Persistence.swift */,
+				C58A2AE42D9CF266004F519F /* CoreDataExtensions.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -198,11 +207,14 @@
 				C58D81952D9B93580059F30F /* StudentProfileView.swift */,
 				C58D81972D9B93660059F30F /* AttendanceView.swift */,
 				C58D81992D9B93740059F30F /* TimelineView.swift */,
-				C58D81A62D9BA41D0059F30F /* AddStudentView.swift */,
-				C58D81A82D9BA4380059F30F /* EditStudentView.swift */,
 				C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */,
 				C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */,
 				C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */,
+				C58A2ADE2D9CEBDB004F519F /* StudentDashboardView.swift */,
+				C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */,
+				C58A2AE22D9CF0B8004F519F /* ReportsView.swift */,
+				C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */,
+				C58A2AE82D9D1046004F519F /* SearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,20 +367,24 @@
 				C58BD2612D9A35130054940A /* Persistence.swift in Sources */,
 				C58D819D2D9B93980059F30F /* Student+CoreDataClass.swift in Sources */,
 				C58BD25A2D9A35110054940A /* ContentView.swift in Sources */,
+				C58A2AE32D9CF0B8004F519F /* ReportsView.swift in Sources */,
 				C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */,
 				C58D81942D9B934A0059F30F /* AdminDashboardView.swift in Sources */,
 				C58D81922D9B93370059F30F /* LoginView.swift in Sources */,
-				C58D81A92D9BA4380059F30F /* EditStudentView.swift in Sources */,
 				C58D819F2D9B93AF0059F30F /* Post+CoreDataClass.swift in Sources */,
 				C58D81AF2D9BA5D40059F30F /* ButtonStyles.swift in Sources */,
 				C58D818B2D9B92F80059F30F /* AuthViewModel.swift in Sources */,
+				C58A2AE92D9D1046004F519F /* SearchBar.swift in Sources */,
+				C58A2AE12D9CEC18004F519F /* StudentManagementView.swift in Sources */,
 				C58BD2642D9A35130054940A /* Attendance.xcdatamodeld in Sources */,
 				C58D818D2D9B93090059F30F /* StudentViewModel.swift in Sources */,
 				C58D81A32D9B96DB0059F30F /* Course+CoreDataClass.swift in Sources */,
+				C58A2AE72D9CF4D7004F519F /* AddEditStudentView.swift in Sources */,
 				C58BD2582D9A35110054940A /* AttendanceApp.swift in Sources */,
 				C58D81A12D9B93C20059F30F /* Comment+CoreDataClass.swift in Sources */,
+				C58A2AE52D9CF266004F519F /* CoreDataExtensions.swift in Sources */,
+				C58A2ADF2D9CEBDB004F519F /* StudentDashboardView.swift in Sources */,
 				C58D81962D9B93580059F30F /* StudentProfileView.swift in Sources */,
-				C58D81A72D9BA41D0059F30F /* AddStudentView.swift in Sources */,
 				C58D819A2D9B93740059F30F /* TimelineView.swift in Sources */,
 				C58D81AD2D9BA5620059F30F /* CourseEnrollmentView.swift in Sources */,
 			);
