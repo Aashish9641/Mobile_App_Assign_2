@@ -1,31 +1,34 @@
 import CoreData
 
-struct PersistenceController {
+final class PersistenceController {
     static let shared = PersistenceController()
     
     let container: NSPersistentContainer
     
-    init(inMemory: Bool = false) {
+    init() {
         container = NSPersistentContainer(name: "Attendance")
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("""
+                🔥 Core Data Error:
+                - Model Entities: \(self.container.managedObjectModel.entitiesByName.keys)
+                - Error: \(error.localizedDescription)
+                """)
             }
+            print("✅ Core Data initialized with entities:", self.container.managedObjectModel.entitiesByName.keys)
         }
+        container.viewContext.automaticallyMergesChangesFromParent = true
     }
     
     func save() {
         let context = container.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+        guard context.hasChanges else { return }
+        
+        do {
+            try context.save()
+        } catch {
+            print("💥 Save error: \(error.localizedDescription)")
+            context.rollback()
         }
     }
 }

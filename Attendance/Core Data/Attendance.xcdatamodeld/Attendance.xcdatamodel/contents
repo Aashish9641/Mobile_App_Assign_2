@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="21H1320" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Attendance" representedClassName="Item" syncable="YES">
+    <entity name="Attendance" representedClassName="Attendance" isAbstract="YES" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="attendances" inverseEntity="Course"/>
+        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="attendances" inverseEntity="Student"/>
     </entity>
-    <entity name="Comment" representedClassName="Item" syncable="YES">
+    <entity name="Comment" representedClassName="Comment" isAbstract="YES" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="comments" inverseEntity="Student"/>
+        <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="comments" inverseEntity="Post"/>
     </entity>
-    <entity name="Course" representedClassName="Item" syncable="YES">
+    <entity name="Course" representedClassName="Course" isAbstract="YES" syncable="YES">
         <attribute name="code" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="schedule" optional="YES" attributeType="String"/>
+        <relationship name="attendances" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Attendance" inverseName="course" inverseEntity="Attendance"/>
+        <relationship name="posts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="course" inverseEntity="Post"/>
+        <relationship name="students" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="courses" inverseEntity="Student"/>
     </entity>
-    <entity name="Post" representedClassName="Item" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="Post" representedClassName="Post" isAbstract="YES" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isGlobal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="posts" inverseEntity="Student"/>
+        <relationship name="comments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comment" inverseName="post" inverseEntity="Comment"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="posts" inverseEntity="Course"/>
     </entity>
-    <entity name="Student" representedClassName="Student" syncable="YES">
+    <entity name="Student" representedClassName="Student" isAbstract="YES" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="password" optional="YES" attributeType="String"/>
+        <relationship name="attendances" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Attendance" inverseName="student" inverseEntity="Attendance"/>
+        <relationship name="comments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comment" inverseName="author" inverseEntity="Comment"/>
+        <relationship name="courses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="students" inverseEntity="Course"/>
+        <relationship name="posts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="author" inverseEntity="Post"/>
     </entity>
     <elements>
-        <element name="Attendance" positionX="-18" positionY="36" width="128" height="74"/>
-        <element name="Comment" positionX="27" positionY="81" width="128" height="74"/>
-        <element name="Course" positionX="-27" positionY="27" width="128" height="89"/>
-        <element name="Post" positionX="0" positionY="54" width="128" height="89"/>
-        <element name="Student" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="Attendance" positionX="-18" positionY="36" width="128" height="118"/>
+        <element name="Comment" positionX="27" positionY="81" width="128" height="118"/>
+        <element name="Course" positionX="-27" positionY="27" width="128" height="148"/>
+        <element name="Post" positionX="0" positionY="54" width="128" height="148"/>
+        <element name="Student" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

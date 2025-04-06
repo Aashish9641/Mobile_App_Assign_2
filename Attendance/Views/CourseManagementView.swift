@@ -1,8 +1,8 @@
 import SwiftUI
 import CoreData
 
-// MARK: - InfoRow View
-struct InfoRow: View {
+// MARK: - rowIf View
+struct rowIf: View {
     let icon: String
     let label: String
     let value: String
@@ -28,9 +28,11 @@ struct CourseManagementView: View {
     @EnvironmentObject var authVM: AuthViewModel
     
     @FetchRequest(
+        entity: Course.entity(), // REQUIRED
         sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
-        animation: .default)
-    private var courses: FetchedResults<Course>
+        animation: .default
+    ) private var courses: FetchedResults<Course>
+
     
     @State private var showingAddCourse = false
     @State private var searchText = ""
@@ -207,9 +209,9 @@ struct CourseDetailView: View {
         Form {
             // Course Information Section
             Section(header: Text("Course Information")) {
-                InfoRow(icon: "text.book.closed", label: "Name", value: course.name ?? "Unknown")
-                InfoRow(icon: "number", label: "Code", value: course.code ?? "No code")
-                InfoRow(icon: "calendar", label: "Schedule", value: course.schedule ?? "No schedule")
+                rowIf(icon: "text.book.closed", label: "Name", value: course.name ?? "Unknown")
+                rowIf(icon: "number", label: "Code", value: course.code ?? "No code")
+                rowIf(icon: "calendar", label: "Schedule", value: course.schedule ?? "No schedule")
             }
 
             // Enrolled Students Section

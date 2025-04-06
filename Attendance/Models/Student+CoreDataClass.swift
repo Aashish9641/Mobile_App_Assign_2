@@ -1,4 +1,3 @@
-// MARK: - Models/Student+CoreDataClass.swift
 import Foundation
 import CoreData
 
@@ -12,9 +11,17 @@ public class Student: NSManagedObject, Identifiable {
     @NSManaged public var comments: Set<Comment>?
     @NSManaged public var courses: Set<Course>?
     @NSManaged public var attendanceRecords: Set<Attendance>?
-
     
     public func enroll(in course: Course) {
-        self.mutableSetValue(forKey: "courses").add(course)
+        // Add student to course
+        let courseStudents = course.mutableSetValue(forKey: "students")
+        courseStudents.add(self)
+        
+        // Add course to student
+        let studentCourses = self.mutableSetValue(forKey: "courses")
+        studentCourses.add(course)
+    }
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Student> {
+        return NSFetchRequest<Student>(entityName: "Student")
     }
 }

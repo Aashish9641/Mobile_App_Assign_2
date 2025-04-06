@@ -10,7 +10,11 @@ struct AdminDashboardView: View {
         TabView {
             // Student Management
             NavigationView {
-                StudentManagementView()
+                if #available(iOS 15, *) {
+                    StudentManagementView()
+                } else {
+                    // Fallback on earlier versions
+                }
             }
             .tabItem {
                 Label("Students", systemImage: "person.3.fill")

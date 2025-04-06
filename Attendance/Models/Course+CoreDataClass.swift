@@ -1,4 +1,3 @@
-// MARK: - 📂 Models/Course+CoreDataClass.swift
 import Foundation
 import CoreData
 
@@ -11,4 +10,10 @@ public class Course: NSManagedObject, Identifiable {
     @NSManaged public var students: Set<Student>?
     @NSManaged public var posts: Set<Post>?
     @NSManaged public var attendanceRecords: Set<Attendance>?
+    
+    // Add class method
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Course> {
+        return NSFetchRequest<Course>(entityName: "Course")
+    }
+
 }

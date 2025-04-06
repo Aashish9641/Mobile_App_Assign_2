@@ -1,18 +1,23 @@
-// MARK: - CourseEnrollmentView.swift
 import SwiftUI
 import CoreData
 
 struct CourseEnrollmentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var student: Student
     
+    // Add fetch request directly in the view
     @FetchRequest(
+        entity: Course.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
-        animation: .default)
-    private var allCourses: FetchedResults<Course>
+        animation: .default
+    ) private var allCourses: FetchedResults<Course>
     
+    // Public initializer
+    init(student: Student) {
+        self.student = student
+    }
+
     var body: some View {
         NavigationView {
             List {

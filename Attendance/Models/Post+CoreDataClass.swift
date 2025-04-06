@@ -18,4 +18,7 @@ public class Post: NSManagedObject, Identifiable {
         formatter.timeStyle = .short
         return formatter.string(from: timestamp)
     }
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Post> {
+        return NSFetchRequest<Post>(entityName: "Post")
+    }
 }
