@@ -16,4 +16,7 @@ public class Attendance: NSManagedObject, Identifiable {
         formatter.timeStyle = .short
         return formatter.string(from: date)
     }
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Attendance> {
+        return NSFetchRequest<Attendance>(entityName: "Attendance")
+    }
 }

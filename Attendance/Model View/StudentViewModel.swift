@@ -15,3 +15,4 @@ class StudentViewModel: ObservableObject {
         PersistenceController.shared.save()
     }
 }
+

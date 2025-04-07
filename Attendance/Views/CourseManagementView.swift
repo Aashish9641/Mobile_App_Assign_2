@@ -1,8 +1,8 @@
 import SwiftUI
 import CoreData
 
-// MARK: - InfoRow View
-struct InfoRow: View {
+// MARK: - rowIf View
+struct rowIf: View {
     let icon: String
     let label: String
     let value: String
@@ -20,17 +20,16 @@ struct InfoRow: View {
     }
 }
 
-
-
 // MARK: - Main Course Management View
 struct CourseManagementView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var authVM: AuthViewModel
     
     @FetchRequest(
+        entity: Course.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
-        animation: .default)
-    private var courses: FetchedResults<Course>
+        animation: .default
+    ) private var courses: FetchedResults<Course>
     
     @State private var showingAddCourse = false
     @State private var searchText = ""
@@ -40,8 +39,8 @@ struct CourseManagementView: View {
             return Array(courses)
         } else {
             return courses.filter { course in
-                (course.name.lowercased().contains(searchText.lowercased()) ?? false) ||
-                (course.code.lowercased().contains(searchText.lowercased()) ?? false)
+                (course.name?.lowercased().contains(searchText.lowercased()) ?? false) ||
+                (course.code?.lowercased().contains(searchText.lowercased()) ?? false)
             }
         }
     }
@@ -138,13 +137,23 @@ struct CourseRow: View {
 struct AddEditCourseView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
-    
-    @State private var name = ""
-    @State private var code = ""
-    @State private var schedule = ""
+
+    @State private var name: String
+    @State private var code: String
+    @State private var schedule: String
     @State private var showingAlert = false
     @State private var alertMessage = ""
     
+    var course: Course?
+
+    // Initialize with an optional course
+    init(course: Course? = nil) {
+        _name = State(initialValue: course?.name ?? "")
+        _code = State(initialValue: course?.code ?? "")
+        _schedule = State(initialValue: course?.schedule ?? "")
+        self.course = course
+    }
+
     var body: some View {
         NavigationView {
             Form {
@@ -161,7 +170,7 @@ struct AddEditCourseView: View {
                     .disabled(name.isEmpty || code.isEmpty)
                 }
             }
-            .navigationTitle("New Course")
+            .navigationTitle(course == nil ? "New Course" : "Edit Course")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -177,11 +186,17 @@ struct AddEditCourseView: View {
     }
     
     private func saveCourse() {
-        let newCourse = Course(context: viewContext)
-        newCourse.id = UUID()
-        newCourse.name = name
-        newCourse.code = code
-        newCourse.schedule = schedule
+        if let course = course {
+            course.name = name
+            course.code = code
+            course.schedule = schedule
+        } else {
+            let newCourse = Course(context: viewContext)
+            newCourse.id = UUID()
+            newCourse.name = name
+            newCourse.code = code
+            newCourse.schedule = schedule
+        }
         
         do {
             try viewContext.save()
@@ -196,23 +211,25 @@ struct AddEditCourseView: View {
 // MARK: - Course Detail View
 struct CourseDetailView: View {
     @ObservedObject var course: Course
-    
-    // Extract students into a computed property to simplify view logic
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.presentationMode) var presentationMode
+
     var students: [Student] {
         guard let studentSet = course.students as? Set<Student> else { return [] }
-        return Array(studentSet).sorted { ($0.name ?? "") < ($1.name ?? "") } // Sorting for stability
+        return Array(studentSet).sorted { ($0.name ?? "") < ($1.name ?? "") }
     }
+
+    @State private var showingEditCourse = false
+    @State private var showingDeleteConfirmation = false
 
     var body: some View {
         Form {
-            // Course Information Section
             Section(header: Text("Course Information")) {
-                InfoRow(icon: "text.book.closed", label: "Name", value: course.name ?? "Unknown")
-                InfoRow(icon: "number", label: "Code", value: course.code ?? "No code")
-                InfoRow(icon: "calendar", label: "Schedule", value: course.schedule ?? "No schedule")
+                rowIf(icon: "text.book.closed", label: "Name", value: course.name ?? "Unknown")
+                rowIf(icon: "number", label: "Code", value: course.code ?? "No code")
+                rowIf(icon: "calendar", label: "Schedule", value: course.schedule ?? "No schedule")
             }
 
-            // Enrolled Students Section
             Section(header: Text("Enrolled Students")) {
                 if students.isEmpty {
                     Text("No students enrolled")
@@ -240,8 +257,47 @@ struct CourseDetailView: View {
         }
         .navigationTitle("Course Details")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showingEditCourse = true
+                }) {
+                    Image(systemName: "pencil")
+                }
+                .sheet(isPresented: $showingEditCourse) {
+                    AddEditCourseView(course: course)
+                        .environment(\.managedObjectContext, viewContext)
+                }
+
+                Button(action: {
+                    showingDeleteConfirmation = true
+                }) {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                }
+            }
+        }
+        .alert(isPresented: $showingDeleteConfirmation) {
+            Alert(
+                title: Text("Delete Course"),
+                message: Text("Are you sure you want to delete this course?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    deleteCourse()
+                },
+                secondaryButton: .cancel()
+            )
+        }
+    }
+
+    private func deleteCourse() {
+        withAnimation {
+            viewContext.delete(course)
+            do {
+                try viewContext.save()
+                presentationMode.wrappedValue.dismiss()
+            } catch {
+                print("Error deleting course: \(error.localizedDescription)")
+            }
+        }
     }
 }
-
-
-

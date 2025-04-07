@@ -1,15 +1,19 @@
-// MARK: - AttendanceApp.swift
 import SwiftUI
 
 @main
 struct AttendanceApp: App {
-    @StateObject var authVM = AuthViewModel() // Create the view model
+    @StateObject var authVM = AuthViewModel()
+    let persistenceController = PersistenceController.shared
+    
+    init() {
+        print("Core Data Entities:", PersistenceController.shared.container.managedObjectModel.entitiesByName.keys)
+    }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(authVM) // Inject the view model
-                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                .environmentObject(authVM)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

@@ -1,60 +1,59 @@
-// MARK: - CourseEnrollmentView.swift
 import SwiftUI
 import CoreData
 
 struct CourseEnrollmentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.presentationMode) var presentationMode
-    
     @ObservedObject var student: Student
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
-        animation: .default)
-    private var allCourses: FetchedResults<Course>
-    
+        animation: .default
+    ) private var allCourses: FetchedResults<Course>
+
     var body: some View {
         NavigationView {
             List {
                 ForEach(allCourses) { course in
-                    HStack {
-                        Text(course.name ?? "Unknown Course")
-                        Spacer()
-                        if isEnrolled(in: course) {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.green)
-                        }
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        toggleEnrollment(for: course)
-                    }
+                    raps(
+                        course: course,
+                        isEnrolled: student.coursesArray.contains(course),
+                        toggleAction: { toggleEnrollment(for: course) }
+                    )
                 }
             }
             .navigationTitle("Enroll in Courses")
-            .navigationBarItems(trailing: Button("Done") {
-                presentationMode.wrappedValue.dismiss()
-            })
         }
-    }
-    
-    private func isEnrolled(in course: Course) -> Bool {
-        student.courses?.contains(course) ?? false
     }
     
     private func toggleEnrollment(for course: Course) {
-        withAnimation {
-            if isEnrolled(in: course) {
-                student.mutableSetValue(forKey: "courses").remove(course)
-            } else {
-                student.mutableSetValue(forKey: "courses").add(course)
-            }
-            
-            do {
-                try viewContext.save()
-            } catch {
-                print("Failed to update enrollment: \(error.localizedDescription)")
+        if student.coursesArray.contains(course) {
+            student.safeRemoveCourse(course, context: viewContext)
+        } else {
+            student.safeAddCourse(course, context: viewContext)
+        }
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("Failed to save context: \(error.localizedDescription)")
+        }
+    }
+}
+
+struct raps: View {
+    let course: Course
+    let isEnrolled: Bool
+    let toggleAction: () -> Void
+    
+    var body: some View {
+        HStack {
+            Text(course.name ?? "Unknown Course")
+            Spacer()
+            if isEnrolled {
+                Image(systemName: "checkmark")
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture(perform: toggleAction)
     }
 }
