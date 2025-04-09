@@ -9,39 +9,43 @@ public class Student: NSManagedObject, Identifiable {
     @NSManaged public var password: String?
     @NSManaged public var courses: NSSet?
     
+    // Sorted courses array
     public var coursesArray: [Course] {
         let set = courses as? Set<Course> ?? []
         return set.sorted { $0.name ?? "" < $1.name ?? "" }
     }
     
-    @objc(addCoursesObject:)
-    @NSManaged public func addToCourses(_ value: Course)
-    
-    @objc(removeCoursesObject:)
-    @NSManaged public func removeFromCourses(_ value: Course)
-    
-    @objc(addCourses:)
-    @NSManaged public func addToCourses(_ values: NSSet)
-    
-    @objc(removeCourses:)
-    @NSManaged public func removeFromCourses(_ values: NSSet)
-    
+    // Safe method to add a course
     public func safeAddCourse(_ course: Course, context: NSManagedObjectContext) {
         context.performAndWait {
-            if !coursesArray.contains(course) {
-                addToCourses(course)
+            print("Attempting to add course: \(course.name ?? "Unknown") to student: \(name ?? "Unknown")")
+            
+            if let coursesSet = courses as? NSMutableSet, !coursesSet.contains(course) {
+                coursesSet.add(course)
                 course.addToStudents(self)
+                print("Successfully added course: \(course.name ?? "Unknown") to student: \(name ?? "Unknown")")
+            } else {
+                print("Course already exists for this student or invalid set.")
             }
         }
     }
     
+    // Safe method to remove a course
     public func safeRemoveCourse(_ course: Course, context: NSManagedObjectContext) {
         context.performAndWait {
-            removeFromCourses(course)
-            course.removeFromStudents(self)
+            print("Attempting to remove course: \(course.name ?? "Unknown") from student: \(name ?? "Unknown")")
+            
+            if let coursesSet = courses as? NSMutableSet, coursesSet.contains(course) {
+                coursesSet.remove(course)
+                course.removeFromStudents(self)
+                print("Successfully removed course: \(course.name ?? "Unknown") from student: \(name ?? "Unknown")")
+            } else {
+                print("Course not found in this student's courses.")
+            }
         }
     }
     
+    // Core Data fetch request
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Student> {
         return NSFetchRequest<Student>(entityName: "Student")
     }

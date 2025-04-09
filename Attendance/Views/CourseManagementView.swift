@@ -54,7 +54,7 @@ struct CourseManagementView: View {
                 List {
                     ForEach(filteredCourses, id: \.self) { course in
                         NavigationLink(destination: CourseDetailView(course: course)) {
-                            CourseRow(course: course)
+                            Cast(course: course)
                         }
                         .contextMenu {
                             if #available(iOS 15.0, *) {
@@ -105,7 +105,7 @@ struct CourseManagementView: View {
 }
 
 // MARK: - Course Row View
-struct CourseRow: View {
+struct Cast: View {
     let course: Course
     
     var body: some View {

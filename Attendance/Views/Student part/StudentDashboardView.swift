@@ -1,5 +1,6 @@
 import SwiftUI
 
+// MARK: - StudentDashboardView.swift
 struct StudentDashboardView: View {
     @EnvironmentObject var authVM: AuthViewModel
     
@@ -8,6 +9,7 @@ struct StudentDashboardView: View {
             // Home
             NavigationView {
                 StudentHomeView()
+                    .navigationBarItems(trailing: logoutButton)
             }
             .tabItem {
                 Label("Home", systemImage: "house.fill")
@@ -16,6 +18,7 @@ struct StudentDashboardView: View {
             // Attendance
             NavigationView {
                 AttendanceView()
+                    .navigationBarItems(trailing: logoutButton)
             }
             .tabItem {
                 Label("Attendance", systemImage: "checkmark.circle.fill")
@@ -25,8 +28,9 @@ struct StudentDashboardView: View {
             NavigationView {
                 if #available(iOS 15.0, *) {
                     TimelineView()
+                        .navigationBarItems(trailing: logoutButton)
                 } else {
-                    Text("Timeline requires iOS 15+")
+                    // Fallback on earlier versions
                 }
             }
             .tabItem {
@@ -37,6 +41,7 @@ struct StudentDashboardView: View {
             NavigationView {
                 if #available(iOS 15.0, *) {
                     StudentProfileView()
+                        .navigationBarItems(trailing: logoutButton)
                 } else {
                     // Fallback on earlier versions
                 }
@@ -45,14 +50,16 @@ struct StudentDashboardView: View {
                 Label("Profile", systemImage: "person.fill")
             }
         }
-        .accentColor(Color.green)
-        .navigationBarTitle("Student Dashboard", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: {
+        .accentColor(.green)
+    }
+    
+    private var logoutButton: some View {
+        Button(action: {
             authVM.logout()
         }) {
             Text("Logout")
-                .foregroundColor(.green)
-        })
+                .foregroundColor(.red)
+        }
     }
 }
 
