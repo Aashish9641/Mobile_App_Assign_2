@@ -24,6 +24,11 @@ public class Student: NSManagedObject, Identifiable {
                 coursesSet.add(course)
                 course.addToStudents(self)
                 print("Successfully added course: \(course.name ?? "Unknown") to student: \(name ?? "Unknown")")
+                do {
+                    try context.save()
+                } catch {
+                    print("Failed to save context: \(error.localizedDescription)")
+                }
             } else {
                 print("Course already exists for this student or invalid set.")
             }
@@ -39,6 +44,11 @@ public class Student: NSManagedObject, Identifiable {
                 coursesSet.remove(course)
                 course.removeFromStudents(self)
                 print("Successfully removed course: \(course.name ?? "Unknown") from student: \(name ?? "Unknown")")
+                do {
+                    try context.save()
+                } catch {
+                    print("Failed to save context: \(error.localizedDescription)")
+                }
             } else {
                 print("Course not found in this student's courses.")
             }

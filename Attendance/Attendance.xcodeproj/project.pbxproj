@@ -41,6 +41,7 @@
 		C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */; };
 		C58D81AD2D9BA5620059F30F /* CourseEnrollmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */; };
 		C58D81AF2D9BA5D40059F30F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */; };
+		C599AD3E2DA7811D0006C863 /* StudentEnrollmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C599AD3D2DA7811D0006C863 /* StudentEnrollmentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseManagementView.swift; sourceTree = "<group>"; };
 		C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEnrollmentView.swift; sourceTree = "<group>"; };
 		C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		C599AD3D2DA7811D0006C863 /* StudentEnrollmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentEnrollmentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				C590B2BF2DA3676C00A5C727 /* Student part */,
 				C590B2BE2DA3676600A5C727 /* Admin side */,
 				C58D81912D9B93370059F30F /* LoginView.swift */,
+				C599AD3D2DA7811D0006C863 /* StudentEnrollmentView.swift */,
 				C58D81932D9B934A0059F30F /* AdminDashboardView.swift */,
 				C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */,
 				C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */,
@@ -394,6 +397,7 @@
 				C58D819D2D9B93980059F30F /* Student+CoreDataClass.swift in Sources */,
 				C58BD25A2D9A35110054940A /* ContentView.swift in Sources */,
 				C58A2AE32D9CF0B8004F519F /* ReportsView.swift in Sources */,
+				C599AD3E2DA7811D0006C863 /* StudentEnrollmentView.swift in Sources */,
 				C588660A2DA21726000AA831 /* StudentRow.swift in Sources */,
 				C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */,
 				C58866062DA214C5000AA831 /* StudentDetailView.swift in Sources */,

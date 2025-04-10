@@ -207,17 +207,18 @@ struct AddEditCourseView: View {
         }
     }
 }
-
 // MARK: - Course Detail View
+
+import SwiftUI
+import CoreData
+
 struct CourseDetailView: View {
     @ObservedObject var course: Course
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
-
-    var students: [Student] {
-        guard let studentSet = course.students as? Set<Student> else { return [] }
-        return Array(studentSet).sorted { ($0.name ?? "") < ($1.name ?? "") }
-    }
+    
+    // Declare students as a normal property
+    @State private var students: [Student] = []
 
     @State private var showingEditCourse = false
     @State private var showingDeleteConfirmation = false
@@ -286,6 +287,22 @@ struct CourseDetailView: View {
                 },
                 secondaryButton: .cancel()
             )
+        }
+        .onAppear {
+            fetchStudents()  // Fetch students when the view appears
+        }
+    }
+
+    private func fetchStudents() {
+        // Fetch students from the Core Data context where they are enrolled in this course
+        let request: NSFetchRequest<Student> = Student.fetchRequest()
+        request.predicate = NSPredicate(format: "ANY courses == %@", course)
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Student.name, ascending: true)]
+        
+        do {
+            students = try viewContext.fetch(request)
+        } catch {
+            print("Failed to fetch students: \(error.localizedDescription)")
         }
     }
 

@@ -93,6 +93,7 @@ struct StudentManagementView: View {
                         .foregroundColor(.gray)
                 }
             }
+            
             .buttonStyle(PlainButtonStyle())
 
             Button(action: { editStudent(student) }) {
