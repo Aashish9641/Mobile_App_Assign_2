@@ -70,7 +70,10 @@ struct AddEditStudentView: View {
                     title: Text("Success"),
                     message: Text("Student \(student == nil ? "added" : "updated") successfully"),
                     dismissButton: .default(Text("OK")) {
+<<<<<<< HEAD
                         onSave?() // ✅ Trigger parent refresh
+=======
+>>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
                         presentationMode.wrappedValue.dismiss()
                     }
                 )

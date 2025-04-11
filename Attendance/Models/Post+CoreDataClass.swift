@@ -23,4 +23,7 @@ public class Post: NSManagedObject, Identifiable {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Post> {
         return NSFetchRequest<Post>(entityName: "Post") // adding the post entitiy
     }
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Post> {
+        return NSFetchRequest<Post>(entityName: "Post")
+    }
 }

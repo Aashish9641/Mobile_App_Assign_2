@@ -1,7 +1,11 @@
 import SwiftUI
 import CoreData
 
+<<<<<<< HEAD
 // MARK: - Reusable Row View
+=======
+// MARK: - rowIf View
+>>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
 struct rowIf: View {
     let icon: String
     let label: String
@@ -29,10 +33,18 @@ struct rowIf: View {
 struct CourseManagementView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
+<<<<<<< HEAD
         entity: Course.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
         animation: .default
     ) private var courses: FetchedResults<Course>
+=======
+        entity: Course.entity(), // REQUIRED
+        sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
+        animation: .default
+    ) private var courses: FetchedResults<Course>
+
+>>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
     
     @State private var searchText = ""
     @State private var showingAddCourse = false
@@ -212,10 +224,18 @@ struct CourseDetailView: View {
 
     var body: some View {
         Form {
+<<<<<<< HEAD
             Section(header: Text("Course Info")) {
                 rowIf(icon: "book", label: "Name", value: course.name ?? "Unknown")
                 rowIf(icon: "number", label: "Code", value: course.code ?? "No Code")
                 rowIf(icon: "calendar", label: "Schedule", value: course.schedule ?? "N/A")
+=======
+            // Course Information Section
+            Section(header: Text("Course Information")) {
+                rowIf(icon: "text.book.closed", label: "Name", value: course.name ?? "Unknown")
+                rowIf(icon: "number", label: "Code", value: course.code ?? "No code")
+                rowIf(icon: "calendar", label: "Schedule", value: course.schedule ?? "No schedule")
+>>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
             }
 
             Section(header: Text("Students Enrolled")) {
