@@ -5,6 +5,7 @@ import CoreData
 struct StudentManagementView: View {
     @EnvironmentObject var authVM: AuthViewModel
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) private var dismiss
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Student.name, ascending: true)],
@@ -29,19 +30,43 @@ struct StudentManagementView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    ForEach(filteredStudents, id: \.self) { student in
-                        studentRow(for: student)
+                if students.isEmpty {
+                    Spacer()
+                    Text("No Students Found")
+                        .font(.title3)
+                        .foregroundColor(.gray)
+                    Spacer()
+                } else {
+                    ScrollView {
+                        LazyVStack(spacing: 8) {
+                            ForEach(filteredStudents, id: \.self) { student in
+                                studentRow(for: student)
+                            }
+                        }
+                        .padding(.top)
                     }
+                    .searchable(text: $searchText)
+                    .id(refreshID)
                 }
-                .searchable(text: $searchText)
-                .id(refreshID)
             }
-            .navigationTitle("Student Management")
+            .padding()
+            .navigationTitle("🎓 Student Management")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button(action: {
+                dismiss()
+            }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Back")
+                }
+                .foregroundColor(.blue)
+            })
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { showingAddStudent = true }) {
-                        Label("Add Student", systemImage: "plus")
+                        Label("Add Student", systemImage: "plus.circle.fill")
+                            .foregroundColor(.blue)
+                            .font(.title2)
                     }
                 }
             }
@@ -62,53 +87,62 @@ struct StudentManagementView: View {
                 )
             }
         }
+        .navigationViewStyle(.stack) // Fullscreen on iPhone/iPad
     }
 
     // MARK: - Student Row
 
     private func studentRow(for student: Student) -> some View {
-        HStack(spacing: 15) {
-            Image(systemName: "person.crop.circle.fill")
-                .font(.system(size: 40))
-                .foregroundColor(.blue)
+        VStack {
+            HStack(spacing: 16) {
+                Image(systemName: "person.crop.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.blue)
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(student.name ?? "Unknown Student")
-                    .font(.headline)
-                Text(student.email ?? "No email")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-
-            Spacer()
-
-            // Navigate to Course Assignment View
-            NavigationLink(destination: CourseEnrollmentView(student: student)) {
-                VStack {
-                    Text("\(student.courses?.count ?? 0)")
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(student.name ?? "Unknown Student")
                         .font(.headline)
-                        .foregroundColor(.purple)
-                    Text("Courses")
-                        .font(.caption)
+                    Text(student.email ?? "No email")
+                        .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-            }
-            
-            .buttonStyle(PlainButtonStyle())
 
-            Button(action: { editStudent(student) }) {
-                Image(systemName: "pencil")
-                    .foregroundColor(.blue)
-            }
-            .buttonStyle(BorderlessButtonStyle())
+                Spacer()
 
-            Button(action: { confirmDelete(student) }) {
-                Image(systemName: "trash")
-                    .foregroundColor(.red)
+                NavigationLink(destination: CourseEnrollmentView(student: student)) {
+                    VStack(spacing: 2) {
+                        Text("\(student.courses?.count ?? 0)")
+                            .font(.headline)
+                            .foregroundColor(.purple)
+                        Text("Courses")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
+
+                HStack(spacing: 12) {
+                    Button(action: { editStudent(student) }) {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(.orange)
+                            .imageScale(.large)
+                    }
+
+                    Button(action: { confirmDelete(student) }) {
+                        Image(systemName: "trash.fill")
+                            .foregroundColor(.red)
+                            .imageScale(.large)
+                    }
+                }
+                .buttonStyle(BorderlessButtonStyle())
             }
-            .buttonStyle(BorderlessButtonStyle())
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+            .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
+            .padding(.horizontal)
         }
-        .padding(.vertical, 8)
     }
 
     // MARK: - Actions

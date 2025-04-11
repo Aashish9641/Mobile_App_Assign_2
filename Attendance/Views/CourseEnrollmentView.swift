@@ -21,7 +21,7 @@ struct CourseEnrollmentView: View {
                     ForEach(allCourses) { course in
                         CourseRow(
                             course: course,
-                            isEnrolled: enrollmentStatus[course.id ?? UUID()] ?? student.coursesArray.contains(course),
+                            isEnrolled: enrollmentStatus[course.id ?? UUID()] ?? student.arrCou.contains(course),
                             toggleAction: { toggleEnrollment(for: course) }
                         )
                     }
@@ -55,15 +55,15 @@ struct CourseEnrollmentView: View {
     
     private func toggleEnrollment(for course: Course) {
         // Get the current enrollment status from the local state
-        let wasEnrolled = enrollmentStatus[course.id ?? UUID()] ?? student.coursesArray.contains(course)
+        let wasEnrolled = enrollmentStatus[course.id ?? UUID()] ?? student.arrCou.contains(course)
         
         // Toggle the enrollment status
         if wasEnrolled {
-            student.safeRemoveCourse(course, context: viewContext)
+            student.delCour(course, context: viewContext)
             message = "Course \(course.name ?? "Unknown") unassigned"
             enrollmentStatus[course.id ?? UUID()] = false  // Update status to "unassigned"
         } else {
-            student.safeAddCourse(course, context: viewContext)
+            student.addSafe(course, context: viewContext)
             message = "Course \(course.name ?? "Unknown") assigned!"
             enrollmentStatus[course.id ?? UUID()] = true  // Update status to "assigned"
         }
@@ -83,7 +83,7 @@ struct CourseEnrollmentView: View {
         // Ensure enrollmentStatus reflects the actual status in the database
         for course in allCourses {
             // Check if the course is currently assigned to the student in Core Data
-            let isEnrolled = student.coursesArray.contains(course)
+            let isEnrolled = student.arrCou.contains(course)
             enrollmentStatus[course.id ?? UUID()] = isEnrolled
         }
     }

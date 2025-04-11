@@ -1,4 +1,3 @@
-// MARK: - LoginView.swift
 import SwiftUI
 
 struct LoginView: View {
@@ -10,94 +9,203 @@ struct LoginView: View {
     @State private var password = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var showPassword = false
+    @State private var isLoading = false
+    
+    // Custom color scheme
+    private var accentColor: Color {
+        isAdmin ? Color(red: 0.58, green: 0.45, blue: 0.94) : Color(red: 0.30, green: 0.75, blue: 0.60)
+    }
+    
+    private var backgroundGradient: LinearGradient {
+        LinearGradient(
+            gradient: Gradient(colors: [
+                Color(red: 0.07, green: 0.15, blue: 0.31),
+                isAdmin ? Color(red: 0.14, green: 0.35, blue: 0.68) : Color(red: 0.20, green: 0.60, blue: 0.50)
+            ]),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 30) {
-                // Role-specific header
-                VStack {
-                    Image(systemName: isAdmin ? "key.fill" : "graduationcap.fill")
-                        .font(.system(size: 50))
-                        .foregroundColor(isAdmin ? .purple : .green)
-                    
-                    Text(isAdmin ? "Admin Portal" : "Student Portal")
-                        .font(.title)
-                        .fontWeight(.bold)
-                }
-                .padding(.top, 50)
+            ZStack {
+                backgroundGradient
+                    .edgesIgnoringSafeArea(.all)
                 
-                // Login form
-                VStack(spacing: 20) {
-                    TextField("University Email", text: $email)
-                        .textFieldStyle(UniversityTextFieldStyle())
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                    
-                    SecureField("Password", text: $password)
-                        .textFieldStyle(UniversityTextFieldStyle())
-                    
-                    Button(action: login) {
-                        Text("Login")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(isAdmin ? Color.purple : Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                VStack(spacing: 32) {
+                    // Header Section
+                    VStack(spacing: 20) {
+                        if #available(iOS 15.0, *) {
+                            Image(systemName: isAdmin ? "key.fill" : "graduationcap.fill")
+                                .font(.system(size: 60, weight: .thin))
+                                .symbolRenderingMode(.hierarchical)
+                                .foregroundColor(accentColor)
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                        
+                        VStack(spacing: 8) {
+                            Text(isAdmin ? "Admin Portal" : "Student Portal")
+                                .font(.system(size: 28, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                            
+                            Text("GraceTech University")
+                                .font(.subheadline)
+                                .foregroundColor(.white.opacity(0.8))
+                        }
                     }
-                    .padding(.top, 20)
+                    .padding(.top, 40)
+                    
+                    // Form Section
+                    VStack(spacing: 24) {
+                        // Email Field
+                        HStack {
+                            Image(systemName: "envelope.fill")
+                                .foregroundColor(.white.opacity(0.7))
+                            TextField("University Email", text: $email)
+                                .keyboardType(.emailAddress)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
+                                .foregroundColor(.white)
+                        }
+                        .textFieldStyle(UniversityTextFieldStyle(accentColor: accentColor))
+                        
+                        // Password Field
+                        HStack {
+                            Image(systemName: "lock.fill")
+                                .foregroundColor(.white.opacity(0.7))
+                            
+                            if showPassword {
+                                TextField("Password", text: $password)
+                                    .foregroundColor(.white)
+                            } else {
+                                SecureField("Password", text: $password)
+                                    .foregroundColor(.white)
+                            }
+                            
+                            Button {
+                                showPassword.toggle()
+                            } label: {
+                                Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
+                                    .foregroundColor(.white.opacity(0.7))
+                            }
+                        }
+                        .textFieldStyle(UniversityTextFieldStyle(accentColor: accentColor))
+                        
+                        // Login Button
+                        Button(action: login) {
+                            if isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Text("Login")
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                            }
+                        }
+                        .buttonStyle(LoginButtonStyle(accentColor: accentColor, isLoading: isLoading))
+                        .padding(.top, 16)
+                    }
+                    .padding(.horizontal, 32)
+                    
+                    if !isAdmin {
+                        Text("Contact admin for credential recovery")
+                            .font(.caption)
+                            .foregroundColor(.white.opacity(0.7))
+                            .transition(.opacity)
+                    }
+                    
+                    Spacer()
                 }
-                .padding(.horizontal, 30)
-                
-                if !isAdmin {
-                    Text("Contact admin if you forgot your credentials")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                
-                Spacer()
             }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Close") {
-                presentationMode.wrappedValue.dismiss()
-            })
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(
+                leading: Button(action: dismiss) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 16, weight: .bold))
+                        Text("Back")
+                    }
+                    .foregroundColor(accentColor)
+                },
+                trailing: Button("Close") { dismiss() }
+                    .foregroundColor(accentColor)
+            )
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Login Failed"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                Alert(
+                    title: Text("Login Failed").foregroundColor(accentColor),
+                    message: Text(alertMessage),
+                    dismissButton: .default(Text("OK"))
+                )
             }
         }
     }
     
     private func login() {
-        if isAdmin {
-            // Predefined admin credentials
-            if email == "admin12@gmail.com" && password == "admin123" {
+        isLoading = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            defer { isLoading = false }
+            
+            if isAdmin {
+                if email == "admin12@gmail.com" && password == "admin123" {
+                    authVM.login(email: email, password: password)
+                    dismiss()
+                } else {
+                    alertMessage = "Invalid admin credentials"
+                    showAlert = true
+                }
+            } else {
                 authVM.login(email: email, password: password)
-                presentationMode.wrappedValue.dismiss()
-            } else {
-                alertMessage = "Invalid admin credentials"
-                showAlert = true
-            }
-        } else {
-            // Student login (credentials managed by admin)
-            authVM.login(email: email, password: password)
-            if authVM.isAuthenticated {
-                presentationMode.wrappedValue.dismiss()
-            } else {
-                alertMessage = "Invalid student credentials"
-                showAlert = true
+                if authVM.isAuthenticated {
+                    dismiss()
+                } else {
+                    alertMessage = "Invalid student credentials"
+                    showAlert = true
+                }
             }
         }
     }
+    
+    private func dismiss() {
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
+// MARK: - Custom Styles
 struct UniversityTextFieldStyle: TextFieldStyle {
+    var accentColor: Color
+    
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(8)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.white.opacity(0.15))
             )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(accentColor.opacity(0.5), lineWidth: 1)
+            )
+    }
+}
+
+struct LoginButtonStyle: ButtonStyle {
+    var accentColor: Color
+    var isLoading: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .padding(.vertical, 14)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(accentColor)
+                    .shadow(color: accentColor.opacity(0.3), radius: 10, x: 0, y: 4)
+            )
+            .scaleEffect(configuration.isPressed ? 0.98 : 1)
+            .opacity(isLoading ? 0.8 : 1)
     }
 }
