@@ -20,7 +20,4 @@ public class Attendance: NSManagedObject, Identifiable {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Attendance> { // it will request the fetec for attendance entities
         return NSFetchRequest<Attendance>(entityName: "Attendance") // Returing the fetch entity
     }
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Attendance> {
-        return NSFetchRequest<Attendance>(entityName: "Attendance")
-    }
 }

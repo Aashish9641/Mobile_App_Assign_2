@@ -3,31 +3,16 @@ import CoreData
 
 struct CourseEnrollmentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-<<<<<<< HEAD
     @ObservedObject var student: Student
     @State private var message: String? = nil
 
-=======
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var student: Student
-    
-    // Add fetch request directly in the view
->>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
     @FetchRequest(
-        entity: Course.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
         animation: .default
     ) private var allCourses: FetchedResults<Course>
     
-<<<<<<< HEAD
     // This state will track the enrollment status of courses locally
     @State private var enrollmentStatus: [UUID: Bool] = [:]  // Store status by course ID
-=======
-    // Public initializer
-    init(student: Student) {
-        self.student = student
-    }
->>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
 
     var body: some View {
         NavigationView {

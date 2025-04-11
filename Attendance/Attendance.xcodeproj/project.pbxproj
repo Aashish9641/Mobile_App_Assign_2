@@ -215,27 +215,14 @@
 				C58D81912D9B93370059F30F /* LoginView.swift */,
 				C599AD3D2DA7811D0006C863 /* StudentEnrollmentView.swift */,
 				C58D81932D9B934A0059F30F /* AdminDashboardView.swift */,
-<<<<<<< HEAD
-=======
-				C58D81972D9B93660059F30F /* AttendanceView.swift */,
-				C58D81952D9B93580059F30F /* StudentProfileView.swift */,
-				C58D81992D9B93740059F30F /* TimelineView.swift */,
->>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
 				C58D81AA2D9BA5320059F30F /* CourseManagementView.swift */,
 				C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */,
 				C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */,
 				C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */,
 				C58A2AE22D9CF0B8004F519F /* ReportsView.swift */,
 				C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */,
-<<<<<<< HEAD
 				C58866052DA214C5000AA831 /* StudentDetailView.swift */,
 				C58866072DA2167D000AA831 /* InfoRow.swift */,
-=======
-				C58A2AE82D9D1046004F519F /* SearchBar.swift */,
-				C58866052DA214C5000AA831 /* StudentDetailView.swift */,
-				C58866072DA2167D000AA831 /* InfoRow.swift */,
-				C58866092DA21726000AA831 /* StudentRow.swift */,
->>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -410,10 +397,7 @@
 				C58D819D2D9B93980059F30F /* Student+CoreDataClass.swift in Sources */,
 				C58BD25A2D9A35110054940A /* ContentView.swift in Sources */,
 				C58A2AE32D9CF0B8004F519F /* ReportsView.swift in Sources */,
-<<<<<<< HEAD
 				C599AD3E2DA7811D0006C863 /* StudentEnrollmentView.swift in Sources */,
-=======
->>>>>>> 2a48ba131fd0c861e3c1aa78510abad6e731a2c7
 				C588660A2DA21726000AA831 /* StudentRow.swift in Sources */,
 				C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */,
 				C58866062DA214C5000AA831 /* StudentDetailView.swift in Sources */,
