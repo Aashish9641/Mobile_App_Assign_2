@@ -1,189 +1,188 @@
-import SwiftUI
-
-// MARK: - StudentDashboardView.swift
-struct StudentDashboardView: View {
-    @EnvironmentObject var authVM: AuthViewModel
+import SwiftUI // Importinmg the swift UI for manageing teh Swift part
+struct StudentDashboardView: View { // this is the main dashboard for the students
+    @EnvironmentObject var authVM: AuthViewModel // Accessing the view model of authentication
     
-    var body: some View {
-        TabView {
-            // Home
-            NavigationView {
-                StudentHomeView()
-                    .navigationBarItems(trailing: logoutButton)
+    var body: some View { // add view for body section
+        TabView { // made the tab based interface in UI
+            // adding the home tab
+            NavigationView { // add nav view to go to another part
+                mainStude() // fix the custom view for the major panel
+                    .navigationBarItems(trailing: butLogo) // add logout button in nav bar
             }
-            .tabItem {
-                Label("Home", systemImage: "house.fill")
-            }
-            
-            // Attendance
-            NavigationView {
-                AttendanceView()
-                    .navigationBarItems(trailing: logoutButton)
-            }
-            .tabItem {
-                Label("Attendance", systemImage: "checkmark.circle.fill")
+            .tabItem { // add tab parts
+                Label("Home", systemImage: "house.fill") // add the table icon and label
             }
             
-            // Timeline
-            NavigationView {
-                if #available(iOS 15.0, *) {
-                    TimelineView()
-                        .navigationBarItems(trailing: logoutButton)
+            // Adding the Attendance section
+            NavigationView { // inilize the nav view
+                AttendanceView() // nav go to attendance screen
+                    .navigationBarItems(trailing: butLogo) // add the logout button here
+            }
+            .tabItem { // add tab items
+                Label("Attendance", systemImage: "checkmark.circle.fill") // linking the label and icon
+            }
+            
+            // added the timeline tab as well
+            NavigationView { // add nav bar view
+                if #available(iOS 15.0, *) { // make sure the timeline runs in IOS 15
+                    TimelineView() // add timeline for post operation
+                        .navigationBarItems(trailing: butLogo) // added the logout button
                 } else {
-                    // Fallback on earlier versions
+                    // it will fallb ack in IOS version
                 }
             }
-            .tabItem {
-                Label("Timeline", systemImage: "message.fill")
+            .tabItem { // also linked tab items as timline
+                Label("Timeline", systemImage: "message.fill") // linked label and icon for this
             }
             
-            // Profile
-            NavigationView {
-                if #available(iOS 15.0, *) {
-                    StudentProfileView()
-                        .navigationBarItems(trailing: logoutButton)
+            // another profile tab
+            NavigationView { // add navigation containmer for stack
+                if #available(iOS 15.0, *) { // make sure to run in ios 15
+                    StudentProfileView() // viewing the profile of students
+                        .navigationBarItems(trailing: butLogo) // again added the button for logout
                 } else {
-                    // Fallback on earlier versions
+                    // go back of Ios earlier version
                 }
             }
-            .tabItem {
-                Label("Profile", systemImage: "person.fill")
+            .tabItem { // tab items linked
+                Label("Profile", systemImage: "person.fill") // added label of profile and icon
             }
         }
-        .accentColor(.green)
+        .accentColor(.blue) // making accent color as blue
     }
     
-    private var logoutButton: some View {
-        Button(action: {
-            authVM.logout()
+    // elements of logout buttons
+    private var butLogo: some View {
+        Button(action: { // added action for logout button
+            authVM.goBack() // calling the nav back mechanism
         }) {
-            Text("Logout")
-                .foregroundColor(.red)
+            Text("Logout") // added logout text
+                .foregroundColor(.red) // Text would be in red color
         }
     }
 }
 
-struct StudentHomeView: View {
-    @EnvironmentObject var authVM: AuthViewModel
-    @Environment(\.managedObjectContext) private var viewContext
+struct mainStude: View { // main home screen view for students
+    @EnvironmentObject var authVM: AuthViewModel // get the access of authentication view model
+    @Environment(\.managedObjectContext) private var viewContext // added the concept of core data
     
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)],
-        animation: .default)
-    private var courses: FetchedResults<Course>
+    @FetchRequest( // fetching the list of the course sorted by name
+        sortDescriptors: [NSSortDescriptor(keyPath: \Course.name, ascending: true)], // sorted by name in ascending order
+        animation: .default) // add animation as default
+    private var courses: FetchedResults<Course> // consequence of the fetch
     
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                // Welcome Header
-                VStack(spacing: 10) {
-                    Text("Welcome back,")
-                        .font(.title2)
-                        .foregroundColor(.gray)
+    var body: some View { // var body view
+        ScrollView { // allowing the vertical side scrolling
+            VStack(spacing: 21) {
+                // custom for welcome header panel
+                VStack(spacing: 11) { // add vertical side stack space
+                    Text(" Hey Welcome back,") // welcome text for the students
+                        .font(.title2) //add font title 2
+                        .foregroundColor(.gray) // set the BG color as gray
                     
-                    Text(authVM.currentStudent?.name ?? "Student")
-                        .font(.title)
-                        .fontWeight(.bold)
+                    Text(authVM.studeRight?.name ?? "Student") // dispaly the name of studnet with message
+                        .font(.title) // added font title
+                        .fontWeight(.bold) // making it bold as well
                 }
-                .padding(.top, 20)
+                .padding(.top, 20) // set padding in top side
                 
-                // Quick Actions
-                HStack(spacing: 15) {
-                    NavigationLink(destination: AttendanceView()) {
-                        QuickActionButton(icon: "checkmark.circle.fill", label: "Mark Attendance", color: .blue)
+                // Fast action buttons
+                HStack(spacing: 15) { // horizontal layout spacing
+                    NavigationLink(destination: AttendanceView()) { // linking with the attendance screen
+                        buttFast(imgs: "checkmark.circle.fill", llba: "Mark Attendance", color: .blue) // adding the icon and color for the label
                     }
                     
-                    if #available(iOS 15.0, *) {
-                        NavigationLink(destination: TimelineView()) {
-                            QuickActionButton(icon: "message.fill", label: "Post Update", color: .green)
+                    if #available(iOS 15.0, *) { // make sure to run time view in ios 15
+                        NavigationLink(destination: TimelineView()) { // linking with the time line screen to make it better
+                            buttFast(imgs: "message.fill", llba: "Post Update", color: .green)
                         }
                     } else {
-                        // Fallback on earlier versions
-                    };if #available(iOS 15.0, *) {
-                        NavigationLink(destination: TimelineView()) {
-                            QuickActionButton(icon: "message.fill", label: "Post Update", color: .green)
+                        // to to another version of ios
+                    };if #available(iOS 15.0, *) { // make sure to run time view in ios 15
+                        NavigationLink(destination: TimelineView()) { // add to timeline view
+                            buttFast(imgs: "message.fill", llba: "Post Update", color: .green)
                         }
                     } else {
-                        // Fallback on earlier versions
+                        // to to another version of ios
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal) // add padding in horizontal side
                 
-                // Today's Courses
-                VStack(alignment: .leading) {
-                    Text("Your Courses")
-                        .font(.headline)
-                        .padding(.horizontal)
+                // course panel
+                VStack(alignment: .leading) { // add alignment in vertical part
+                    Text("Current Courses") // display the text as courses
+                        .font(.headline) // add font headline
+                        .padding(.horizontal) // declare the padding in H side
                     
-                    if courses.isEmpty {
-                        Text("No courses enrolled")
-                            .foregroundColor(.gray)
-                            .padding()
+                    if courses.isEmpty { // run  if the course is empty
+                        Text("No courses has been enrolled ") // show this message if course is not present
+                            .foregroundColor(.gray) // add gray color as foreground
+                            .padding() // add required padding
                     } else {
-                        ForEach(courses) { course in
-                            CourseCard(course: course)
+                        ForEach(courses) { course in // code of loop through in each course
+                            cardC(course: course) // add the custom card view
                         }
                     }
                 }
                 
-                Spacer()
+                Spacer() // bring the content to the top side
             }
         }
-        .navigationTitle("Home")
+        .navigationTitle("Home") // add title in top of the screen
     }
 }
-
-struct QuickActionButton: View {
-    let icon: String
-    let label: String
-    let color: Color
+// action button for UI elements
+struct buttFast: View {
+    let imgs: String // icon name
+    let llba: String // text label
+    let color: Color // add color
     
-    var body: some View {
-        VStack {
-            Image(systemName: icon)
-                .font(.title)
-                .padding()
-                .background(color.opacity(0.2))
-                .foregroundColor(color)
-                .clipShape(Circle())
+    var body: some View { // view body var
+        VStack { // added the vertical stack
+            Image(systemName: imgs) // added the system icon
+                .font(.title) // added font title
+                .padding() // add necessay padding
+                .background(color.opacity(0.3)) // add background and opacity as well
+                .foregroundColor(color) // add font color as gray
+                .clipShape(Circle()) // make the content in circular shape
             
-            Text(label)
-                .font(.caption)
-                .multilineTextAlignment(.center)
+            Text(llba) // labeling the text
+                .font(.caption) // font text
+                .multilineTextAlignment(.center) // making it in in center
         }
-        .frame(width: 100, height: 100)
-        .background(Color(.secondarySystemBackground))
-        .cornerRadius(15)
+        .frame(width: 99, height: 101) // making the frame size
+        .background(Color(.secondarySystemBackground)) // light background color
+        .cornerRadius(16) // add teh corner radius as well
     }
 }
 
-struct CourseCard: View {
-    let course: Course
+struct cardC: View { // UI elements of courses
+    let course: Course // add the courses model
     
-    var body: some View {
-        HStack {
-            Image(systemName: "book.closed.fill")
-                .font(.title)
-                .foregroundColor(.purple)
-                .padding(.trailing, 10)
+    var body: some View { // add var body view
+        HStack { // horizontal stack added
+            Image(systemName: "book.closed.fill") // add the icon of the book
+                .font(.title) // fixing the font size
+                .foregroundColor(.purple) // fix purple color
+                .padding(.trailing, 11) // space between icon and text
             
-            VStack(alignment: .leading, spacing: 4) {
-                Text(course.name ?? "Unknown Course")
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: 5) { // fixing the alignment
+                Text(course.name ?? "Unknown Course") // add the name of course
+                    .font(.headline) // added the font heading
                 
-                Text(course.schedule ?? "No schedule")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                Text(course.schedule ?? "No schedule") // course shedule added
+                    .font(.subheadline) // link the subheading
+                    .foregroundColor(.gray) // declare color as gray
             }
             
-            Spacer()
+            Spacer() // bring the icon to right side
             
-            Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
+            Image(systemName: "chevron.right") // added the icon arrow
+                .foregroundColor(.gray) // addded the color as gray as well
         }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .cornerRadius(10)
-        .padding(.horizontal)
+        .padding() // fix the rewuired padding
+        .background(Color(.secondarySystemBackground)) // adding card BG
+        .cornerRadius(11) // link cornder radious
+        .padding(.horizontal) // outer padding in horizontal side 
     }
 }

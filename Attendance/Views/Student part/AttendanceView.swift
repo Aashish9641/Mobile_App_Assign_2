@@ -139,7 +139,7 @@ struct AttendanceView: View {
         attendance.id = UUID()
         attendance.date = selectedDate
         attendance.status = "Present"
-        attendance.student = authVM.currentStudent
+        attendance.student = authVM.studeRight
         attendance.course = course
 
         PersistenceController.shared.save()

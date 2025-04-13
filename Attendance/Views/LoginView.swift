@@ -151,15 +151,15 @@ struct LoginView: View {
             
             if isAdmin {
                 if email == "admin12@gmail.com" && password == "admin123" {
-                    authVM.login(email: email, password: password)
+                    authVM.logging(email: email, password: password)
                     dismiss()
                 } else {
                     alertMessage = "Invalid admin credentials"
                     showAlert = true
                 }
             } else {
-                authVM.login(email: email, password: password)
-                if authVM.isAuthenticated {
+                authVM.logging(email: email, password: password)
+                if authVM.authoriZed {
                     dismiss()
                 } else {
                     alertMessage = "Invalid student credentials"

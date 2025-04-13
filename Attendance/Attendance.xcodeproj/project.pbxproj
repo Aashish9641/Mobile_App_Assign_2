@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C58866062DA214C5000AA831 /* StudentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58866052DA214C5000AA831 /* StudentDetailView.swift */; };
 		C58866082DA2167D000AA831 /* InfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58866072DA2167D000AA831 /* InfoRow.swift */; };
-		C588660A2DA21726000AA831 /* StudentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58866092DA21726000AA831 /* StudentRow.swift */; };
 		C58A2ADF2D9CEBDB004F519F /* StudentDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2ADE2D9CEBDB004F519F /* StudentDashboardView.swift */; };
 		C58A2AE12D9CEC18004F519F /* StudentManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */; };
-		C58A2AE32D9CF0B8004F519F /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE22D9CF0B8004F519F /* ReportsView.swift */; };
 		C58A2AE52D9CF266004F519F /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE42D9CF266004F519F /* CoreDataExtensions.swift */; };
 		C58A2AE72D9CF4D7004F519F /* AddEditStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */; };
 		C58A2AE92D9D1046004F519F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A2AE82D9D1046004F519F /* SearchBar.swift */; };
@@ -62,12 +59,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C58866052DA214C5000AA831 /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
 		C58866072DA2167D000AA831 /* InfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRow.swift; sourceTree = "<group>"; };
-		C58866092DA21726000AA831 /* StudentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRow.swift; sourceTree = "<group>"; };
 		C58A2ADE2D9CEBDB004F519F /* StudentDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDashboardView.swift; sourceTree = "<group>"; };
 		C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentManagementView.swift; sourceTree = "<group>"; };
-		C58A2AE22D9CF0B8004F519F /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		C58A2AE42D9CF266004F519F /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditStudentView.swift; sourceTree = "<group>"; };
 		C58A2AE82D9D1046004F519F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -219,9 +213,7 @@
 				C58D81AC2D9BA5620059F30F /* CourseEnrollmentView.swift */,
 				C58D81AE2D9BA5D40059F30F /* ButtonStyles.swift */,
 				C58A2AE02D9CEC18004F519F /* StudentManagementView.swift */,
-				C58A2AE22D9CF0B8004F519F /* ReportsView.swift */,
 				C58A2AE62D9CF4D7004F519F /* AddEditStudentView.swift */,
-				C58866052DA214C5000AA831 /* StudentDetailView.swift */,
 				C58866072DA2167D000AA831 /* InfoRow.swift */,
 			);
 			path = Views;
@@ -254,7 +246,6 @@
 				C58A2AE82D9D1046004F519F /* SearchBar.swift */,
 				C58D81992D9B93740059F30F /* TimelineView.swift */,
 				C58D81972D9B93660059F30F /* AttendanceView.swift */,
-				C58866092DA21726000AA831 /* StudentRow.swift */,
 			);
 			path = "Student part";
 			sourceTree = "<group>";
@@ -396,11 +387,8 @@
 				C58866082DA2167D000AA831 /* InfoRow.swift in Sources */,
 				C58D819D2D9B93980059F30F /* Student+CoreDataClass.swift in Sources */,
 				C58BD25A2D9A35110054940A /* ContentView.swift in Sources */,
-				C58A2AE32D9CF0B8004F519F /* ReportsView.swift in Sources */,
 				C599AD3E2DA7811D0006C863 /* StudentEnrollmentView.swift in Sources */,
-				C588660A2DA21726000AA831 /* StudentRow.swift in Sources */,
 				C58D81AB2D9BA5320059F30F /* CourseManagementView.swift in Sources */,
-				C58866062DA214C5000AA831 /* StudentDetailView.swift in Sources */,
 				C58D81942D9B934A0059F30F /* AdminDashboardView.swift in Sources */,
 				C58D81922D9B93370059F30F /* LoginView.swift in Sources */,
 				C58D819F2D9B93AF0059F30F /* Post+CoreDataClass.swift in Sources */,

@@ -91,7 +91,7 @@ struct ContentView: View {
                     Spacer()
                     
                     // Elegant footer
-                    Text("Version 1.0 • © 2025 GraceTech")
+                    Text("Version 5.0")
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.white.opacity(0.5))
                         .padding(.bottom, 24)
@@ -108,8 +108,8 @@ struct ContentView: View {
                 LoginView(isAdmin: false)
                     .environmentObject(authVM)
             }
-            .fullScreenCover(isPresented: $authVM.isAuthenticated) {
-                if authVM.isAdmin {
+            .fullScreenCover(isPresented: $authVM.authoriZed) {
+                if authVM.panelAdmi {
                     AdminDashboardView()
                         .environmentObject(authVM)
                 } else {

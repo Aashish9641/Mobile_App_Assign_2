@@ -39,7 +39,7 @@ struct AdminDashboardView: View {
         .accentColor(.purple)
         .navigationBarTitle("Admin Dashboard", displayMode: .inline)
         .navigationBarItems(trailing: Button("Logout") {
-            authVM.logout()
+            authVM.goBack()
         })
     }
 }
