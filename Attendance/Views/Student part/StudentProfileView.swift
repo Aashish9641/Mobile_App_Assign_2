@@ -140,7 +140,7 @@ struct StudentProfileView: View { // make teh custom view for student profile
             altMsg = "Password updated successfully" // suceess message
             altSho = true // show the alert
         } catch {
-            altMsg = "Failed to update your password:  \(error.localizedDescription)" // show this message if fails to update
+            altMsg = "Failed to modify your password:  \(error.localizedDescription)" // show this message if fails to update
             altSho = true // dispaly alert 
         }
     }
