@@ -241,7 +241,7 @@ struct allattVie: View { // full attendance voew
             }
         }
         .listStyle(.plain) // add plain style
-        .navigationTitle("Attendance History")  // add the histy message 
+        .navigationTitle("Attendance History")  // add the history message 
         .navigationBarTitleDisplayMode(.inline) // making inline display mode 
     }
 }
